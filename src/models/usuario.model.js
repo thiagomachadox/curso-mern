@@ -7,7 +7,8 @@ const DataSchema = new mongoose.Schema({
     email_usuario:String,
     tipo_usuario:{type:Number, default:1},
     senha_usuario:String
-},{
+},
+{
     timestamps:true
 });
 

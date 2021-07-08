@@ -2,19 +2,19 @@
 const Produto = require('../models/produto.model');
 
 module.exports = {
-    async index (req, res) {
+    async index(req, res) {
         const product = await Produto.find();
 
         res.json(product);
     },
-    async create (req, res){
-        const {nome_produto, descricao_produto, preco_produto, qtd_produto} = req.body;
+    async create(req, res) {
+        const { nome_produto, descricao_produto, preco_produto, qtd_produto } = req.body;
 
         let data = {};
 
-        let product = await Produto.findOne({nome_produto});
-        if(!product){
-            data = {nome_produto,descricao_produto,preco_produto,qtd_produto};
+        let product = await Produto.findOne({ nome_produto });
+        if (!product) {
+            data = { nome_produto, descricao_produto, preco_produto, qtd_produto };
             product = await Produto.create(data);
 
             return res.status(200).json(product);
@@ -23,30 +23,28 @@ module.exports = {
         }
 
     },
-    async details (req, res) {
+    async details(req, res) {
         const { _id } = req.query;
-        const product = await Produto.findOne({_id});
+        const product = await Produto.findOne({ _id });
 
         res.json(product);
     },
 
-    async delete (req, res){
+    async delete(req, res) {
         const { _id } = req.query;
-        const product = await Produto.findByIdAndDelete({_id});
+        const product = await Produto.findByIdAndDelete({ _id });
 
         res.json(product);
-
     },
 
-    async update (req, res){
-        const { _id, nome_produto,descricao_produto,preco_produto,qtd_produto } = req.body;
+    async update(req, res) {
+        const { _id, nome_produto, descricao_produto, preco_produto, qtd_produto } = req.body;
 
-        const data = {nome_produto,descricao_produto,preco_produto,qtd_produto};
+        const data = { nome_produto, descricao_produto, preco_produto, qtd_produto };
 
-        const product = await Produto.findOneAndUpdate({_id}, data,{new:true});
+        const product = await Produto.findOneAndUpdate({ _id }, data, { new: true });
 
         res.json(product);
-
     }
 
 }

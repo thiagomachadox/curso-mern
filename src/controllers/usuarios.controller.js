@@ -12,9 +12,9 @@ module.exports = {
 
         let data = {};
 
-        let user = await Usuario.findOne({email_usuario});
+        let user = await Usuario.findOne({ email_usuario });
         if(!user){
-            data = {nome_usuario,email_usuario,tipo_usuario,senha_usuario};
+            data = { nome_usuario,email_usuario,tipo_usuario,senha_usuario };
             user = await Usuario.create(data);
 
             return res.status(200).json(user);
@@ -32,26 +32,17 @@ module.exports = {
 
     async delete (req, res){
         const { _id } = req.query;
-        const user = await Usuario.findByIdAndDelete({_id});
+        const user = await Usuario.findByIdAndDelete({ _id });
 
         res.json(user);
-
     },
 
     async update (req, res){
         const { _id, nome_usuario, email_usuario, senha_usuario, tipo_usuario } = req.body;
-
-        const data = {
-            nome_usuario,
-            email_usuario,
-            senha_usuario,
-            tipo_usuario
-        };
-
-        const user = await Usuario.findOneAndUpdate({_id}, data,{new:true});
+        const data = { nome_usuario, email_usuario,senha_usuario, tipo_usuario };
+        const user = await Usuario.findOneAndUpdate({ _id }, data,{ new:true });
 
         res.json(user);
-
     }
 
 }

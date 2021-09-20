@@ -15,7 +15,9 @@ const port = process.env.PORT || 5000;
 // terminal 1: $ mongod
 // terminal 2: $ mongo 
 
-mongoose.connect('mongodb://localhost:27017/curso-basico-mern',{
+const mongoAtlasUri = "mongodb+srv://admin:admin@cluster0.sjl2n.mongodb.net/curso-mern?retryWrites=true&w=majority"
+
+mongoose.connect(mongoAtlasUri,{
     useUnifiedTopology:true,
     useNewUrlParser:true,
     useFindAndModify:false
